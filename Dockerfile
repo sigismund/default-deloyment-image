@@ -1,5 +1,5 @@
 FROM debian:stretch-slim
-MAINTAINER Bitbucket Pipelines
+MAINTAINER Žiga Drnovšček
 
 # Install base dependencies
 RUN apt-get update \
@@ -27,6 +27,11 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default
+
+# Add Deployer binary
+RUN curl -LO https://deployer.org/deployer.phar \
+            && mv deployer.phar /usr/local/bin/dep \
+            && chmod +x /usr/local/bin/dep
 
 # Set node path
 ENV NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
