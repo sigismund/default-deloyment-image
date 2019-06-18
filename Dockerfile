@@ -21,7 +21,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y \
        php7.2-cli \
-       --no-install-recommends \
+       php7.2-curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install nvm with node and npm
