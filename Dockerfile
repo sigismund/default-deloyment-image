@@ -12,9 +12,16 @@ RUN apt-get update \
         git \
         ssh-client \
         unzip \
-        php7.0-cli \
         iputils-ping \
+        gnupg \
+        apt-transport-https \
         --no-install-recommends \
+    && curl -L https://packages.sury.org/php/apt.gpg | apt-key add - \
+    && echo "deb https://packages.sury.org/php/ stretch main" | tee /etc/apt/sources.list.d/php.list \
+    && apt-get update \
+    && apt-get install -y \
+       php7.2-cli \
+       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install nvm with node and npm
